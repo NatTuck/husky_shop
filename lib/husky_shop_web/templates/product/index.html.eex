@@ -1,6 +1,6 @@
 <h1>Listing Products</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -20,13 +20,19 @@
       <td><%= product.inventory %></td>
 
       <td>
-        <%= link "Show", to: Routes.product_path(@conn, :show, product) %>
-        <%= link "Edit", to: Routes.product_path(@conn, :edit, product) %>
-        <%= link "Delete", to: Routes.product_path(@conn, :delete, product), method: :delete, data: [confirm: "Are you sure?"] %>
+        <%= link "Show", to: Routes.product_path(@conn, :show, product),
+            class: "btn btn-secondary" %>
+        <%= link "Edit", to: Routes.product_path(@conn, :edit, product),
+            class: "btn btn-info" %>
+        <%= link "Delete", to: Routes.product_path(@conn, :delete, product),
+            method: :delete, data: [confirm: "Are you sure?"],
+            class: "btn btn-danger" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Product", to: Routes.product_path(@conn, :new) %></span>
+<span>
+  <%= link "New Product", to: Routes.product_path(@conn, :new), class: "btn btn-primary" %>
+</span>

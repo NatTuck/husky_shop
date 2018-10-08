@@ -24,5 +24,11 @@
 
 </ul>
 
-<span><%= link "Edit", to: Routes.product_path(@conn, :edit, @product) %></span>
-<span><%= link "Back", to: Routes.product_path(@conn, :index) %></span>
+<span>
+  <%= link("Edit", to: Routes.product_path(@conn, :edit, @product),
+    class: "btn btn-default") %>
+</span>
+<span>
+  <%= link("Back", to: Routes.product_path(@conn, :index),
+    class: "btn btn-default") %>
+</span>
