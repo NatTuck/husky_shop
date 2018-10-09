@@ -89,7 +89,7 @@ get_secret = fn name ->
     secret = Base.encode16(:crypto.strong_rand_bytes(32))
     File.write!(path, secret)
   end
-  File.read!(path)
+  String.trim(File.read!(path))
 end
 
 config :husky_shop, HuskyShopWeb.Endpoint,
