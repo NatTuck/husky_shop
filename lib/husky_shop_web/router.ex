@@ -18,6 +18,7 @@ defmodule HuskyShopWeb.Router do
 
     get "/", PageController, :index
     resources "/products", ProductController
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
