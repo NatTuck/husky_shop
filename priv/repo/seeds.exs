@@ -16,4 +16,9 @@ alias HuskyShop.Users.User
 Repo.insert!(%User{email: "alice@example.com", admin: true})
 Repo.insert!(%User{email: "bob@example.com", admin: false})
 
+alias HuskyShop.Products.Product
+Repo.insert!(%Product{name: "Rubber Duck", desc: "Yellow",
+                      price: Decimal.new("4.99"), inventory: 5})
+Repo.insert!(%Product{name: "Bear", desc: "500lbs; angry",
+                      price: Decimal.new("44.99"), inventory: 2})
 

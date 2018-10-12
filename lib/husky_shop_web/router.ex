@@ -20,6 +20,7 @@ defmodule HuskyShopWeb.Router do
     get "/", PageController, :index
     resources "/products", ProductController
     resources "/users", UserController
+    resources "/cart_items", CartItemController
     resources "/sessions", SessionController, only: [:create, :delete], singleton: true
   end
 
