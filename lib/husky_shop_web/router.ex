@@ -7,6 +7,7 @@ defmodule HuskyShopWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug HuskyShopWeb.Plugs.FetchSession
   end
 
   pipeline :api do
@@ -19,6 +20,7 @@ defmodule HuskyShopWeb.Router do
     get "/", PageController, :index
     resources "/products", ProductController
     resources "/users", UserController
+    resources "/sessions", SessionController, only: [:create, :delete], singleton: true
   end
 
   # Other scopes may use custom stacks.
