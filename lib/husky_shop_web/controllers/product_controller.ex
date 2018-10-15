@@ -3,6 +3,7 @@ defmodule HuskyShopWeb.ProductController do
 
   alias HuskyShop.Products
   alias HuskyShop.Products.Product
+  alias HuskyShop.Carts
 
   def index(conn, _params) do
     products = Products.list_products()
@@ -28,7 +29,10 @@ defmodule HuskyShopWeb.ProductController do
 
   def show(conn, %{"id" => id}) do
     product = Products.get_product!(id)
-    render(conn, "show.html", product: product)
+    user_id = get_session(conn, :user_id)
+    item_cset = Carts.change_cart_item(%Carts.CartItem{
+          user_id: user_id, product_id: product.id, count: 1})
+    render(conn, "show.html", product: product, item_cset: item_cset)
   end
 
   def edit(conn, %{"id" => id}) do

@@ -6,6 +6,7 @@ defmodule HuskyShop.Users.User do
   schema "users" do
     field :admin, :boolean, default: false
     field :email, :string
+    has_many :cart_items, HuskyShop.Carts.CartItem
 
     timestamps()
   end

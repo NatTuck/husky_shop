@@ -3,9 +3,9 @@ defmodule HuskyShop.Repo.Migrations.CreateCartItems do
 
   def change do
     create table(:cart_items) do
-      add :count, :integer
-      add :user_id, references(:users, on_delete: :nothing)
-      add :product_id, references(:products, on_delete: :nothing)
+      add :count, :integer, null: false
+      add :user_id, references(:users, on_delete: :delete_all), null: false
+      add :product_id, references(:products, on_delete: :delete_all), null: false
 
       timestamps()
     end

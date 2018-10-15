@@ -1,9 +1,10 @@
 <h1>Listing Cart items</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Count</th>
+      <th>Name</th>
 
       <th></th>
     </tr>
@@ -12,6 +13,7 @@
 <%= for cart_item <- @cart_items do %>
     <tr>
       <td><%= cart_item.count %></td>
+      <td><%= cart_item.product.name %></td>
 
       <td>
         <%= link "Show", to: Routes.cart_item_path(@conn, :show, cart_item) %>
