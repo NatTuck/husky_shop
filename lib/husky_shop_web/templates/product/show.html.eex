@@ -45,8 +45,10 @@
 <% end %>
 
 <span>
-  <%= link("Edit", to: Routes.product_path(@conn, :edit, @product),
-    class: "btn btn-default") %>
+  <%= if @current_user.admin do %>
+    <%= link("Edit", to: Routes.product_path(@conn, :edit, @product),
+      class: "btn btn-default") %>
+  <% end %>
 </span>
 <span>
   <%= link("Back", to: Routes.product_path(@conn, :index),

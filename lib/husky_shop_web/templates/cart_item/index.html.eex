@@ -1,4 +1,4 @@
-<h1>Listing Cart items</h1>
+<h1>Shopping Cart</h1>
 
 <table class="table table-striped">
   <thead>
@@ -13,16 +13,15 @@
 <%= for cart_item <- @cart_items do %>
     <tr>
       <td><%= cart_item.count %></td>
-      <td><%= cart_item.product.name %></td>
+      <td><%= link(cart_item.product.name,
+          to: Routes.product_path(@conn, :show, cart_item.product_id)) %></td>
 
       <td>
-        <%= link "Show", to: Routes.cart_item_path(@conn, :show, cart_item) %>
-        <%= link "Edit", to: Routes.cart_item_path(@conn, :edit, cart_item) %>
-        <%= link "Delete", to: Routes.cart_item_path(@conn, :delete, cart_item), method: :delete, data: [confirm: "Are you sure?"] %>
+        <%= link("Delete", to: Routes.cart_item_path(@conn, :delete, cart_item),
+          method: :delete, data: [confirm: "Are you sure?"]) %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Cart item", to: Routes.cart_item_path(@conn, :new) %></span>

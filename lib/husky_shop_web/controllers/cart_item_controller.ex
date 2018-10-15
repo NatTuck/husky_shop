@@ -19,7 +19,7 @@ defmodule HuskyShopWeb.CartItemController do
       {:ok, cart_item} ->
         conn
         |> put_flash(:info, "Cart item created successfully.")
-        |> redirect(to: Routes.cart_item_path(conn, :show, cart_item))
+        |> redirect(to: Routes.product_path(conn, :show, cart_item.product_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
@@ -44,7 +44,7 @@ defmodule HuskyShopWeb.CartItemController do
       {:ok, cart_item} ->
         conn
         |> put_flash(:info, "Cart item updated successfully.")
-        |> redirect(to: Routes.cart_item_path(conn, :show, cart_item))
+        |> redirect(to: Routes.product_path(conn, :show, cart_item.product_id))
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", cart_item: cart_item, changeset: changeset)
@@ -57,6 +57,6 @@ defmodule HuskyShopWeb.CartItemController do
 
     conn
     |> put_flash(:info, "Cart item deleted successfully.")
-    |> redirect(to: Routes.cart_item_path(conn, :index))
+    |> redirect(to: Routes.product_path(conn, :show, cart_item.product_id))
   end
 end

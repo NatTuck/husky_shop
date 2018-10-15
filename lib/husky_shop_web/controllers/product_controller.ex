@@ -5,6 +5,8 @@ defmodule HuskyShopWeb.ProductController do
   alias HuskyShop.Products.Product
   alias HuskyShop.Carts
 
+  plug HuskyShopWeb.Plugs.RequireAdmin when action in [:new, :create, :update, :delete]
+
   def index(conn, _params) do
     products = Products.list_products()
     render(conn, "index.html", products: products)
