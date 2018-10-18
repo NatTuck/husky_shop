@@ -8,6 +8,7 @@ defmodule HuskyShop.Products.Product do
     field :inventory, :integer
     field :name, :string
     field :price, :decimal
+    has_many :ratings, HuskyShop.Ratings.Rating
 
     timestamps()
   end

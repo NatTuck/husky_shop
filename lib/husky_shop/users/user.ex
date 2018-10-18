@@ -7,6 +7,7 @@ defmodule HuskyShop.Users.User do
     field :admin, :boolean, default: false
     field :email, :string
     has_many :cart_items, HuskyShop.Carts.CartItem
+    has_many :ratings, HuskyShop.Ratings.Rating
 
     timestamps()
   end

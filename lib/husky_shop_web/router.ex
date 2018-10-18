@@ -10,6 +10,13 @@ defmodule HuskyShopWeb.Router do
     plug HuskyShopWeb.Plugs.FetchSession
   end
 
+  pipeline :ajax do
+    plug :accepts, ["json"]
+    plug :fetch_session
+    plug :fetch_flash
+    plug HuskyShopWeb.Plugs.FetchSession # FIXME: "FetchUser"
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
@@ -22,6 +29,11 @@ defmodule HuskyShopWeb.Router do
     resources "/users", UserController
     resources "/cart_items", CartItemController
     resources "/sessions", SessionController, only: [:create, :delete], singleton: true
+  end
+
+  scope "/ajax", HuskyShopWeb do
+    pipe_through :ajax
+    resources "/ratings", RatingController, except: [:new, :edit]
   end
 
   # Other scopes may use custom stacks.

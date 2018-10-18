@@ -22,12 +22,37 @@
     <%= @product.inventory %>
   </li>
 
+  <li>
+    <strong>Rating:</strong>
+    <%= avg_rating(@product) %>
+
+    <%= if @current_user do %>
+      <div id="rating-form">
+        <select id="rating-select">
+          <option value="1">★</option>
+          <option value="2">★★</option>
+          <option value="3">★★★</option>
+          <option value="4">★★★★</option>
+          <option value="5">★★★★★</option>
+        </select>
+
+        <button id="rating-button"
+                data-user-id="<%= @current_user.id %>"
+                data-product-id="<%= @product.id %>"
+                class="btn btn-secondary">Rate!</button>
+      </div>
+    <% end %>
+  </li>
 </ul>
+
+<script>
+ window.rating_path = "<%= Routes.rating_path(@conn, :create) %>";
+</script>
 
 <%= if @current_user do %>
   <div>
     <%= form_for @item_cset, Routes.cart_item_path(@conn, :create),
-              [class: "form-inline"], fn f -> %>
+    [class: "form-inline"], fn f -> %>
 
       <%= hidden_input f, :user_id %>
       <%= hidden_input f, :product_id %>

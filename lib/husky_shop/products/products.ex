@@ -35,7 +35,11 @@ defmodule HuskyShop.Products do
       ** (Ecto.NoResultsError)
 
   """
-  def get_product!(id), do: Repo.get!(Product, id)
+  def get_product!(id) do
+    Repo.one! from p in Product,
+      where: p.id == ^id,
+      preload: [:ratings]
+  end
 
   @doc """
   Creates a product.
