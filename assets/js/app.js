@@ -13,6 +13,7 @@ import "phoenix_html";
 import jQuery from 'jquery';
 window.jQuery = window.$ = jQuery;
 import "bootstrap";
+import _ from "lodash";
 
 // Import local files
 //
@@ -20,6 +21,20 @@ import "bootstrap";
 // import socket from "./socket"
 
 $(function () {
+  function update_stars(product_id) {
+    $.ajax(`${rating_path}?product_id=${product_id}`, {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: "",
+      success: (resp) => {
+        let count = resp.data.length;
+        let sum = _.sum(_.map(resp.data, (rat) => rat.stars));
+        $('#rating-avg').text(`${sum/count} / 5 (${count} ratings)`);
+      },
+    });
+  }
+
   $('#rating-button').click((ev) => {
     let rating = $('#rating-select').val();
     let user_id = $(ev.target).data('user-id');
@@ -40,6 +55,7 @@ $(function () {
       data: text,
       success: (resp) => {
         $('#rating-form').text(`(your rating: ${resp.data.stars})`);
+        update_stars(product_id);
       },
     });
   });

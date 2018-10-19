@@ -24,7 +24,9 @@
 
   <li>
     <strong>Rating:</strong>
-    <%= avg_rating(@product) %>
+    <span id="rating-avg">
+      <%= avg_rating(@product) %>
+    </span>
 
     <%= if @current_user do %>
       <div id="rating-form">

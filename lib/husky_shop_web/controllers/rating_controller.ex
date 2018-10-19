@@ -6,6 +6,11 @@ defmodule HuskyShopWeb.RatingController do
 
   action_fallback HuskyShopWeb.FallbackController
 
+  def index(conn, %{"product_id" => p_id}) do
+    ratings = Ratings.list_ratings(p_id)
+    render(conn, "index.json", ratings: ratings)
+  end
+
   def index(conn, _params) do
     ratings = Ratings.list_ratings()
     render(conn, "index.json", ratings: ratings)

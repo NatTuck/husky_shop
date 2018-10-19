@@ -21,6 +21,11 @@ defmodule HuskyShop.Ratings do
     Repo.all(Rating)
   end
 
+  def list_ratings(product_id) do
+    Repo.all from r in Rating,
+      where: r.product_id == ^product_id
+  end
+
   @doc """
   Gets a single rating.
 
