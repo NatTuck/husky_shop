@@ -2,11 +2,12 @@ defmodule HuskyShopWeb.ProductView do
   use HuskyShopWeb, :view
 
   def avg_rating(product) do
-    if Enum.empty?(product.ratings) do
-      "??"
+    rats = Enum.map(product.ratings, &(&1.stars))
+    if Enum.empty?(rats) do
+      "?? (no ratings)"
     else
-      mean = Enum.sum(product.ratings) / Enum.count(product.ratings)
-      "#{mean} / 5"
+      mean = Enum.sum(rats) / Enum.count(rats)
+      "#{mean} / 5 (#{Enum.count(rats)} ratings)"
     end
   end
 end

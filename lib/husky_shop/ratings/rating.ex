@@ -16,5 +16,6 @@ defmodule HuskyShop.Ratings.Rating do
     rating
     |> cast(attrs, [:stars, :user_id, :product_id])
     |> validate_required([:stars, :user_id, :product_id])
+    |> unique_constraint(:user_id, name: :ratings_user_id_product_id_index)
   end
 end

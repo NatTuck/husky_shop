@@ -38,8 +38,8 @@ $(function () {
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: text,
-      success: () => {
-        $('#rating-form').text(`(your rating: $(rating))`);
+      success: (resp) => {
+        $('#rating-form').text(`(your rating: ${resp.data.stars})`);
       },
     });
   });

@@ -12,5 +12,6 @@ defmodule HuskyShop.Repo.Migrations.CreateRatings do
 
     create index(:ratings, [:user_id])
     create index(:ratings, [:product_id])
+    create index(:ratings, [:user_id, :product_id], unique: true)
   end
 end

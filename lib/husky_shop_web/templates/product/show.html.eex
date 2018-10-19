@@ -70,7 +70,7 @@
 <% end %>
 
 <span>
-  <%= if @current_user.admin do %>
+  <%= if @current_user && @current_user.admin do %>
     <%= link("Edit", to: Routes.product_path(@conn, :edit, @product),
       class: "btn btn-default") %>
   <% end %>

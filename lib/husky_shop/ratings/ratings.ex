@@ -50,9 +50,11 @@ defmodule HuskyShop.Ratings do
 
   """
   def create_rating(attrs \\ %{}) do
-    %Rating{}
+    rat = %Rating{}
     |> Rating.changeset(attrs)
-    |> Repo.insert()
+    |> Repo.insert(
+      on_conflict: :replace_all,
+      conflict_target: [:user_id, :product_id])
   end
 
   @doc """
