@@ -22,3 +22,12 @@ Repo.insert!(%Product{name: "Rubber Duck", desc: "Yellow",
 Repo.insert!(%Product{name: "Bear", desc: "500lbs; angry",
                       price: Decimal.new("44.99"), inventory: 2})
 
+c = Repo.insert!(%Product{name: "Cookie", desc: "chocolate oatmeal",
+                          price: Decimal.new("0.99"), inventory: 2})
+d = Repo.insert!(%Product{name: "Donut", desc: "chocolate frosted",
+                          price: Decimal.new("1.19"), inventory: 2})
+Repo.insert!(%Product{name: "Pie", desc: "banana cream",
+                      price: Decimal.new("5.99"), inventory: 2,
+                      suggestions: [c,d] })
+
+

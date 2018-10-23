@@ -38,7 +38,7 @@ defmodule HuskyShop.Products do
   def get_product!(id) do
     Repo.one! from p in Product,
       where: p.id == ^id,
-      preload: [:ratings]
+      preload: [:ratings, :suggestions]
   end
 
   @doc """

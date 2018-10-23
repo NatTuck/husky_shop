@@ -71,12 +71,22 @@
   </div>
 <% end %>
 
+<div>
+  <h2>Suggestions</h2>
+  <ul>
+    <%= Enum.map @product.suggestions, fn sg -> %>
+      <li><%= link sg.name, to: Routes.product_path(@conn, :show, sg.id) %></li>
+    <% end %>
+  </ul>
+</div>
+
 <span>
   <%= if @current_user && @current_user.admin do %>
     <%= link("Edit", to: Routes.product_path(@conn, :edit, @product),
       class: "btn btn-default") %>
   <% end %>
 </span>
+
 <span>
   <%= link("Back", to: Routes.product_path(@conn, :index),
     class: "btn btn-default") %>

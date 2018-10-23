@@ -9,6 +9,9 @@ defmodule HuskyShop.Products.Product do
     field :name, :string
     field :price, :decimal
     has_many :ratings, HuskyShop.Ratings.Rating
+    many_to_many :suggestions, HuskyShop.Products.Product,
+      join_through: "suggestions",
+      join_keys: [product_id: :id, suggested_id: :id]
 
     timestamps()
   end
