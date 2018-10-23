@@ -13,8 +13,10 @@
 alias HuskyShop.Repo
 alias HuskyShop.Users.User
 
-Repo.insert!(%User{email: "alice@example.com", admin: true})
-Repo.insert!(%User{email: "bob@example.com", admin: false})
+pwhash = Argon2.hash_pwd_salt("pass1")
+
+Repo.insert!(%User{email: "alice@example.com", admin: true, password_hash: pwhash})
+Repo.insert!(%User{email: "bob@example.com", admin: false, password_hash: pwhash})
 
 alias HuskyShop.Products.Product
 Repo.insert!(%Product{name: "Rubber Duck", desc: "Yellow",

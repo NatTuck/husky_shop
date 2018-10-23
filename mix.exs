@@ -43,6 +43,8 @@ defmodule HuskyShop.MixProject do
       {:jason, "~> 1.0"},
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 2.0"},
+      {:comeonin, "~> 4.1"},
+      {:argon2_elixir, "~> 1.3"},
     ]
   end
 
